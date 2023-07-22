@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React With Limon another an h
+          Its ok Limon
         </a>
       </header>
     </div>
