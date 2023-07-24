@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. another test the last commit by limon
+          Edit <code>src/App.js</code> and save to reload. another test the last commit by limon. change after dleting ssk keys from github
         </p>
         <a
           className="App-link"
