@@ -17,9 +17,8 @@ jobs:
         with:
           host: ${{ vars.DO_HOST }}
           username: ${{ secrets.DO_USERNAME }}
-          key: ${{ secrets.DO_PASSWORD }}
+          password: ${{ secrets.DO_PASSWORD }}
           script: |
             cd ${{ vars.DO_APP_PATH }}
             git pull origin titsDeploy
             npm install --only=prod
-            pm2 restart node1
