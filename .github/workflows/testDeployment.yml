@@ -17,6 +17,7 @@ jobs:
             set -e
             echo "Deploying application ..."
             cd ${{ vars.DO_APP_PATH }}
+            git fetch
             git switch titsDeploy
             git checkout .
             git pull origin titsDeploy --force
