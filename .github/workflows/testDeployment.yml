@@ -21,4 +21,3 @@ jobs:
           script: |
             cd ${{ vars.DO_APP_PATH }}
             git pull origin titsDeploy
-            npm install --only=prod
