@@ -21,6 +21,8 @@ jobs:
             git switch titsDeploy
             git checkout .
             git pull origin titsDeploy --force
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh 
             npm install
             npm run build
             echo "Application deployed successfully!"

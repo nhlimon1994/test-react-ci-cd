@@ -1,27 +1,25 @@
 name: Production Deployment
 on:
   push:
-    branches: [ master ]
+    branches: [ titsDeploy ]
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy app to Development Server
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to remote server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ vars.DO_HOST }}
-          username: ${{ secrets.DO_USERNAME }}
-          password: ${{ secrets.DO_PASSWORD }}
-          sync: true
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            set -e
-            echo "Deploying application ..."
-            cd ${{ vars.DO_APP_PATH }}
-            git switch master
-            git checkout .
-            git pull origin master --force
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh 
-            npm install
-            npm run build
-            echo "Application deployed successfully!"
+            cd ~/home/danielwetan/apps/node1
+            git pull origin titsDeploy
+            npm install --only=prod
+            pm2 restart node1
