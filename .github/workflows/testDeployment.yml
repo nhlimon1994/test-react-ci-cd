@@ -1,0 +1,27 @@
+name: Production Deployment
+on:
+  push:
+    branches: [ test-deployment ]
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy app to Development Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.DO_HOST }}
+          username: ${{ secrets.DO_USERNAME }}
+          password: ${{ secrets.DO_PASSWORD }}
+          sync: true
+          script: |
+            set -e
+            echo "Deploying application ..."
+            cd ${{ vars.DO_APP_PATH }}
+            git switch test-deployment
+            git checkout .
+            git pull origin test-deployment --force
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh 
+            npm install
+            npm run build
+            echo "Application deployed successfully!"
