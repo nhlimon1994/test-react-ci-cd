@@ -1,7 +1,7 @@
 name: Production Deployment
 on:
   push:
-    branches: [ test-deployment ]
+    branches: [ titsDeploy ]
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -17,9 +17,9 @@ jobs:
             set -e
             echo "Deploying application ..."
             cd ${{ vars.DO_APP_PATH }}
-            git switch test-deployment
+            git switch titsDeploy
             git checkout .
-            git pull origin test-deployment --force
+            git pull origin titsDeploy --force
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh 
             npm install
